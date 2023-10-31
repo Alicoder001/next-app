@@ -5,9 +5,10 @@ import React from 'react';
 import Carousel from 'react-multi-carousel';
 
 import { format } from 'date-fns';
-const Hero = () => {
+import { HeroProps } from './Hero.props';
+const Hero = ({ blogs }: HeroProps) => {
 	return (
-		<Box width={'100%'} height={'70vh'} sx={{ backgroundColor: 'red' }}>
+		<Box width={'100%'} height={'70vh'}>
 			<Carousel
 				responsive={{
 					mobile: {
@@ -15,7 +16,7 @@ const Hero = () => {
 						items: 1,
 					},
 				}}>
-				{data.map((item) => {
+				{blogs.map((item) => {
 					return (
 						<Box
 							sx={{
@@ -23,8 +24,8 @@ const Hero = () => {
 							}}
 							width={'100%'}
 							height={'70vh'}
-							key={item.image}>
-							<Image style={{ objectFit: 'cover' }} fill src={item.image} alt={item.title} />
+							key={item.slug}>
+							<Image style={{ objectFit: 'cover' }} fill src={item.image.url} alt={item.title} />
 							<Box
 								sx={{
 									position: 'absolute',
@@ -51,14 +52,14 @@ const Hero = () => {
 								}}
 								zIndex={999}>
 								<Typography variant='h2'>{item.title}</Typography>
-								<Typography variant='h5'>{item.exerpt}</Typography>
+								<Typography variant='h5'>{item.excerpt}</Typography>
 								<Box
 									sx={{
 										display: 'flex',
 										gap: '10px',
 										marginTop: '20px',
 									}}>
-									<Avatar alt={item.author.name} src={item.author.image} />
+									<Avatar alt={item.author.name} src={item.author.avatar[0].url} />
 									<Box>
 										<Typography>{item.author.name}</Typography>
 										<Box>{format(new Date(), 'dd MMM yyyy')} &#x2022; 10min read</Box>

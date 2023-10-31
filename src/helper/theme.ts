@@ -7,6 +7,9 @@ export const roboto = Roboto({
 	fallback: ['Helvetica', 'Arial', 'sans-serif'],
 });
 const theme = createTheme({
+	palette: {
+		mode: 'dark',
+	},
 	typography: {
 		fontFamily: roboto.style.fontFamily,
 	},
