@@ -16,5 +16,8 @@ export interface BlogTypes {
 		slug: string;
 		label: string;
 	};
+	description: {
+		text: string;
+	};
 	createdAt: Date;
 }

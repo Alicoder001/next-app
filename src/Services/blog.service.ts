@@ -25,6 +25,9 @@ export const BlogService = {
 						slug
 						label
 					}
+					description {
+						text
+					}
 					createdAt
 				}
 			}
