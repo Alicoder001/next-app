@@ -21,6 +21,7 @@ interface Props {
 
 const drawerWidth = 240;
 const Navbar = (props: Props) => {
+	const router = useRouter();
 	const { window } = props;
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -35,7 +36,12 @@ const Navbar = (props: Props) => {
 			<Divider />
 			<List>
 				{navItems.map((item) => (
-					<ListItem key={item.route} disablePadding>
+					<ListItem
+						onClick={() => {
+							router.push(`/${item.route}`);
+						}}
+						key={item.route}
+						disablePadding>
 						<ListItemButton sx={{ textAlign: 'center' }}>
 							<ListItemText primary={item.label} />
 						</ListItemButton>
@@ -46,7 +52,6 @@ const Navbar = (props: Props) => {
 	);
 
 	const container = window !== undefined ? () => window().document.body : undefined;
-	const router = useRouter();
 	return (
 		<Box height={'10vh'} sx={{ display: 'flex' }}>
 			<CssBaseline />
@@ -71,7 +76,13 @@ const Navbar = (props: Props) => {
 					</Typography>
 					<Box sx={{ display: { xs: 'none', sm: 'block' } }}>
 						{navItems?.map((item) => (
-							<Button key={item?.route} sx={{ color: '#fff' }}>
+							<Button
+								onClick={(e) => {
+									e.preventDefault();
+									router.push(`/${item.route}`);
+								}}
+								key={item?.route}
+								sx={{ color: '#fff' }}>
 								{item?.label}
 							</Button>
 						))}
