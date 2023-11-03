@@ -53,7 +53,13 @@ const Sidebar = ({ latestBlogs, categories }: SidebarProps) => {
 					<Box sx={{ display: 'flex', flexDirection: 'column', marginTop: '20px' }}>
 						{categories.map((nav) => (
 							<Fragment key={nav.slug}>
-								<Button fullWidth sx={{ justifyContent: 'flex-start', height: '50%' }}>
+								<Button
+									onClick={(e) => {
+										e.preventDefault();
+										router.push(`/category/${nav.slug}`);
+									}}
+									fullWidth
+									sx={{ justifyContent: 'flex-start', height: '50%' }}>
 									{nav.label}
 								</Button>
 								<Divider />
