@@ -14,6 +14,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { navItems } from 'src/config/constants';
+import { useRouter } from 'next/router';
 interface Props {
 	window?: () => Window;
 }
@@ -45,6 +46,7 @@ const Navbar = (props: Props) => {
 	);
 
 	const container = window !== undefined ? () => window().document.body : undefined;
+	const router = useRouter();
 	return (
 		<Box height={'10vh'} sx={{ display: 'flex' }}>
 			<CssBaseline />
@@ -58,7 +60,13 @@ const Navbar = (props: Props) => {
 						sx={{ mr: 2, display: { sm: 'none' } }}>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant='h6' component='div' sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
+					<Typography
+						onClick={() => {
+							router.push('/');
+						}}
+						variant='h6'
+						component='div'
+						sx={{ flexGrow: 1, cursor: 'pointer', display: { xs: 'none', sm: 'block' } }}>
 						MUI
 					</Typography>
 					<Box sx={{ display: { xs: 'none', sm: 'block' } }}>

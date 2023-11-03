@@ -5,19 +5,25 @@ import Image from 'next/image';
 import { format } from 'date-fns';
 import { ContentProps } from './content.props';
 import { calculateEstimatedTimeToRead } from 'src/helper/time.format';
+import { useRouter } from 'next/router';
 
 const Content = ({ blogs }: ContentProps) => {
+	const router = useRouter();
 	return (
 		<Box width={{ xs: '100%', md: '70%' }}>
 			{blogs.map((item) => (
 				<Box
 					key={item.id}
 					sx={{
+						cursor: 'pointer',
 						backgroundColor: 'rgba(0,0,0,.5)',
 						padding: '20px',
 						marginTop: '20px',
 						borderRadius: '8px',
 						boxShadow: '0 8px 16px rgba(255,255,255,.1)',
+					}}
+					onClick={() => {
+						router.push(`/blog/${item.slug}`);
 					}}>
 					<Box position={'relative'} width={'100%'} height={'50vh'}>
 						<Image

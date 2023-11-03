@@ -3,11 +3,12 @@ import { Avatar, Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
 import Carousel from 'react-multi-carousel';
-
 import { format } from 'date-fns';
 import { HeroProps } from './Hero.props';
 import { calculateEstimatedTimeToRead } from 'src/helper/time.format';
+import { useRouter } from 'next/router';
 const Hero = ({ blogs }: HeroProps) => {
+	const router = useRouter();
 	return (
 		<Box width={'100%'} height={'70vh'}>
 			<Carousel
@@ -20,8 +21,12 @@ const Hero = ({ blogs }: HeroProps) => {
 				{blogs.map((item) => {
 					return (
 						<Box
+							onClick={() => {
+								router.push(`/blog/${item.slug}`);
+							}}
 							sx={{
 								position: 'relative',
+								cursor: 'pointer',
 							}}
 							width={'100%'}
 							height={'70vh'}
@@ -64,7 +69,8 @@ const Hero = ({ blogs }: HeroProps) => {
 									<Box>
 										<Typography>{item.author.name}</Typography>
 										<Box>
-											{format(new Date(), 'dd MMM yyyy')} &#x2022; {calculateEstimatedTimeToRead(item.description.text)}min read
+											{format(new Date(item.createdAt), 'dd MMM yyyy')} &#x2022;{' '}
+											{calculateEstimatedTimeToRead(item.description.text)}min read
 										</Box>
 									</Box>
 								</Box>

@@ -18,6 +18,7 @@ export interface BlogTypes {
 	};
 	description: {
 		text: string;
+		html: string;
 	};
 	createdAt: Date;
 }
