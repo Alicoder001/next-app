@@ -17,7 +17,7 @@ const Blogs = ({ blogs }: BlogsProps) => {
 		<SEO metaTitle={`Blogs`}>
 			<Layout>
 				<Box width={'100%'} textAlign={'center'} display={'flex'} justifyContent={'center'}>
-					<Box width={{ xs: '100%', md: '70%' }}>
+					<Box textAlign={'start'} width={{ xs: '100%', md: '70%' }}>
 						{blogs.map((item) => (
 							<Box
 								key={item.id}
